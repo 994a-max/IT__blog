@@ -13,7 +13,7 @@ uvicorn main:app --reload
 
 ---------------
 package 
---------------
+---------
 pip install fastapi
 pip install uvicorn
 pip install sqlmodel
