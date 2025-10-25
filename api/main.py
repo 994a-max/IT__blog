@@ -108,6 +108,6 @@ async def delete_blog(
     if not get_blog:
         raise HTTPException(
             status_code=404, detail=f"blog not found with id : {blog_id}")
-    session.delete(Blog)
+    session.delete(get_blog)
     session.commit()
     return {"ok": True}
