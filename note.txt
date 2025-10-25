@@ -1,0 +1,26 @@
+env name ==> project 
+-- active env ==>
+ .\project\Scripts\activate
+
+
+---------------
+server
+---------------
+-- for start server ==>
+uvicorn main:app --reload
+
+
+
+---------------
+package 
+--------------
+pip install fastapi
+pip install uvicorn
+pip install sqlmodel
+
+
+------------
+query parameters
+http://127.0.0.1:8000/blog?limit=111&published=true
+blog id or string 
+-----------
