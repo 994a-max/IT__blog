@@ -4,6 +4,7 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 from enum import Enum
 from datetime import datetime
 from typing import Annotated
+from fastapi.middleware.cors import CORSMiddleware
 
 
 # database -------
@@ -49,14 +50,27 @@ class Blog(SQLModel, table=True):
 
 
 class admin(SQLModel):
+
     admin_id: int | None = Field(default=None, primary_key=True)
     admin_name: str = Field(default="admin", index=True)
 
 
+# api s -----------
 app = FastAPI()
 
+# cors
+origins = [
+    "http://localhost:5173",
+    "https://it-blog-p5h0.onrender.com",
+]
 
-# api s -----------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.on_event("startup")
