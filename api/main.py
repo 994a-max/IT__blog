@@ -290,6 +290,7 @@ Note: This is a compact demo implementation. For production use:
 
 from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Form, Header
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List
@@ -400,6 +401,19 @@ class AboutRead(BaseModel):
 
 # --- App and utilities ---
 app = FastAPI(title="Company Single-File Backend")
+
+# --- CORS middleware ---
+origins = [
+    "http://localhost:5173",
+    "https://it-blog.vercel.app",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins, 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 
