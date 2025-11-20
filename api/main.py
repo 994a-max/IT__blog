@@ -570,7 +570,7 @@ def delete_award(award_id: int, db: Session = Depends(get_db)):
 # Blog CRUD
 
 
-@app.post("/admin/blog", response_model=BlogRead, dependencies=[Depends(require_admin)])
+@app.post("/admin/blog", response_model=BlogRead)
 def create_blog(title: str = Form(...), content: str = Form(None), image: UploadFile = File(None), db: Session = Depends(get_db)):
     img_path = None
     if image:
